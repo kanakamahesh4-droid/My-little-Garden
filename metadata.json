@@ -1,0 +1,6 @@
+{
+  "name": "My Little Garden",
+  "description": "Your personalized plant care, identification, and diagnosis companion (PlantAID).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
