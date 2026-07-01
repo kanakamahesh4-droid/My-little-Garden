@@ -31,4 +31,30 @@ class GardenRepository(private val gardenDao: GardenDao) {
     suspend fun insertJournalEntry(entry: JournalEntry): Long = gardenDao.insertJournalEntry(entry)
 
     suspend fun deleteJournalEntry(entry: JournalEntry) = gardenDao.deleteJournalEntry(entry)
+
+    fun getGrowthMetricsForPlant(plantId: Int): Flow<List<com.example.data.model.GrowthMetric>> = gardenDao.getGrowthMetricsForPlant(plantId)
+
+    suspend fun insertGrowthMetric(metric: com.example.data.model.GrowthMetric): Long = gardenDao.insertGrowthMetric(metric)
+
+    suspend fun deleteGrowthMetric(metric: com.example.data.model.GrowthMetric) = gardenDao.deleteGrowthMetric(metric)
+
+    val allCareTasks: Flow<List<com.example.data.model.CareTask>> = gardenDao.getAllCareTasks()
+
+    suspend fun insertCareTask(task: com.example.data.model.CareTask): Long = gardenDao.insertCareTask(task)
+
+    suspend fun updateCareTask(task: com.example.data.model.CareTask) = gardenDao.updateCareTask(task)
+
+    suspend fun deleteCareTask(task: com.example.data.model.CareTask) = gardenDao.deleteCareTask(task)
+
+    suspend fun insertWikiPlantRecord(record: com.example.data.model.WikiPlantRecord): Long = gardenDao.insertWikiPlantRecord(record)
+
+    val userProfile: Flow<com.example.data.model.UserProfile?> = gardenDao.getUserProfile()
+    suspend fun insertUserProfile(profile: com.example.data.model.UserProfile) = gardenDao.insertUserProfile(profile)
+
+    val searchCount: Flow<Int> = gardenDao.getSearchCount()
+    suspend fun getSearchCountDirect(): Int = gardenDao.getSearchCountDirect()
+    suspend fun insertSearchRecord(record: com.example.data.model.SearchRecord): Long = gardenDao.insertSearchRecord(record)
+
+    val allTransactions: Flow<List<com.example.data.model.TransactionRecord>> = gardenDao.getAllTransactions()
+    suspend fun insertTransactionRecord(record: com.example.data.model.TransactionRecord): Long = gardenDao.insertTransactionRecord(record)
 }

@@ -47,4 +47,49 @@ interface GardenDao {
 
     @Delete
     suspend fun deleteJournalEntry(entry: JournalEntry)
+
+    @Query("SELECT * FROM growth_metrics WHERE plantId = :plantId ORDER BY timestamp ASC")
+    fun getGrowthMetricsForPlant(plantId: Int): Flow<List<com.example.data.model.GrowthMetric>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertGrowthMetric(metric: com.example.data.model.GrowthMetric): Long
+
+    @Delete
+    suspend fun deleteGrowthMetric(metric: com.example.data.model.GrowthMetric)
+
+    @Query("SELECT * FROM care_tasks ORDER BY scheduledDate ASC")
+    fun getAllCareTasks(): Flow<List<com.example.data.model.CareTask>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertCareTask(task: com.example.data.model.CareTask): Long
+
+    @Update
+    suspend fun updateCareTask(task: com.example.data.model.CareTask)
+
+    @Delete
+    suspend fun deleteCareTask(task: com.example.data.model.CareTask)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertWikiPlantRecord(record: com.example.data.model.WikiPlantRecord): Long
+
+    @Query("SELECT * FROM user_profiles WHERE id = 1")
+    fun getUserProfile(): Flow<com.example.data.model.UserProfile?>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertUserProfile(profile: com.example.data.model.UserProfile)
+
+    @Query("SELECT COUNT(*) FROM search_records")
+    fun getSearchCount(): Flow<Int>
+
+    @Query("SELECT COUNT(*) FROM search_records")
+    suspend fun getSearchCountDirect(): Int
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertSearchRecord(record: com.example.data.model.SearchRecord): Long
+
+    @Query("SELECT * FROM transaction_records ORDER BY timestamp DESC")
+    fun getAllTransactions(): Flow<List<com.example.data.model.TransactionRecord>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertTransactionRecord(record: com.example.data.model.TransactionRecord): Long
 }

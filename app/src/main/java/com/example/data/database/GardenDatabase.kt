@@ -8,11 +8,26 @@ import com.example.data.model.Plant
 import com.example.data.model.Diagnosis
 import com.example.data.model.PlantIdentification
 import com.example.data.model.JournalEntry
+import com.example.data.model.CareTask
+import com.example.data.model.WikiPlantRecord
 import com.example.data.dao.GardenDao
 
+import com.example.data.model.GrowthMetric
+
 @Database(
-    entities = [Plant::class, Diagnosis::class, PlantIdentification::class, JournalEntry::class],
-    version = 3,
+    entities = [
+        Plant::class,
+        Diagnosis::class,
+        PlantIdentification::class,
+        JournalEntry::class,
+        CareTask::class,
+        WikiPlantRecord::class,
+        GrowthMetric::class,
+        com.example.data.model.SearchRecord::class,
+        com.example.data.model.UserProfile::class,
+        com.example.data.model.TransactionRecord::class
+    ],
+    version = 8,
     exportSchema = false
 )
 abstract class GardenDatabase : RoomDatabase() {
@@ -29,7 +44,7 @@ abstract class GardenDatabase : RoomDatabase() {
                     GardenDatabase::class.java,
                     "garden_database"
                 )
-                .fallbackToDestructiveMigration()
+                .fallbackToDestructiveMigration(dropAllTables = true)
                 .build()
                 INSTANCE = instance
                 instance

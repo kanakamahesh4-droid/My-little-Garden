@@ -1,0 +1,10 @@
+Starting a Gradle Daemon, 4 busy Daemons could not be reused, use --status for details
+Calculating task graph as no cached configuration is available for tasks: :app:testDebugUnitTest --tests com.example.WeeklyRemindersTest
+
+> Configure project :app
+WARNING: The option setting 'android.builtInKotlin=false' is deprecated.
+The current default is 'true'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+WARNING: The option setting 'android.newDsl=false' is deprecated.
+The current default is 'true'.
+It will be removed in version 10.0 of the Android Gradle plugin.
